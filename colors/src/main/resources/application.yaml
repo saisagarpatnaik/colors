@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: ${spring_profiles_active}
+  datasource:
+    url: ${dbURL}
+    username: ${dbUser}
+    password: ${dbPassword}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
