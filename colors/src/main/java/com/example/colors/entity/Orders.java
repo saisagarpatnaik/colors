@@ -6,8 +6,6 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Setter
-@Getter
 @Data
 @ToString
 @AllArgsConstructor
@@ -18,12 +16,6 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
-
-    @Column
-    private String orderColor;
-
-    @Column
-    private String orderShade;
 
     @Column
     private int orderQuantity;
@@ -42,16 +34,15 @@ public class Orders {
         orderDate = LocalDateTime.now().toString();
     }
 
-    //*@OneToOne (cascade = CascadeType.ALL)
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
 
-    @ManyToOne //(cascade = CascadeType.PERSIST) //(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "colorId")
     private Colors colors;
-/*
-    @ManyToOne //(cascade = CascadeType.PERSIST) //(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+
+    @ManyToOne
     @JoinColumn(name = "shadeId")
-    private Shades shades;*/
+    private Shades shades;
 }

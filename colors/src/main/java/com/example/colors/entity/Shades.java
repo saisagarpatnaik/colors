@@ -10,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Shades {
+public class Shades{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

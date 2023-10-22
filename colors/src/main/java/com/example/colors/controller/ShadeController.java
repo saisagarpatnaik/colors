@@ -19,8 +19,7 @@ public class ShadeController {
     @PostMapping (Constants.SAVESHADES)
     public Shades saveShades(@RequestBody Shades shade){
         log.info("This is controller shades" + shade.toString());
-        Shades s1 = shadesService.saveShades(shade);
-        return s1;
+        return shadesService.saveShades(shade);
     }
 
 }

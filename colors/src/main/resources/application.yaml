@@ -1,10 +1,17 @@
 spring:
   profiles:
     active: ${spring_profiles_active}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQLDialect
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
   datasource:
     url: ${dbURL}
     username: ${dbUser}
     password: ${dbPassword}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
