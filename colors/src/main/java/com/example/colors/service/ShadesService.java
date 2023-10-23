@@ -4,6 +4,6 @@ import com.example.colors.entity.Shades;
 
 public interface ShadesService {
 
-    public Shades saveShades(Shades shades);
+	public Shades saveShades(Shades shades);
 
 }

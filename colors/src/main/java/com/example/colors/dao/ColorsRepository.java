@@ -1,13 +1,15 @@
 package com.example.colors.dao;
 
-import com.example.colors.entity.Colors;
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-@Repository
-public interface ColorsRepository extends CrudRepository<Colors, Long> {
+import com.example.colors.entity.Colors;
 
-   public List<Colors> findByColor(String s1);
+@Repository
+public interface ColorsRepository extends JpaRepository<Colors, Long> {
+
+	public List<Colors> findByColor(String s1);
 
 }

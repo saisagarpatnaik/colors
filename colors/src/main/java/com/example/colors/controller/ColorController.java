@@ -14,28 +14,28 @@ import java.util.List;
 @RestController
 public class ColorController {
 
-    private static final Logger log = LoggerFactory.getLogger(ColorController.class);
-    @Autowired
-    private ColorsService colorsService;
+	private static final Logger log = LoggerFactory.getLogger(ColorController.class);
+	@Autowired
+	private ColorsService colorsService;
 
-    @Value("${color.names}") //Bring data from application. properties
-    private String names; //set it to a variable calls names
+	@Value("${color.names}") // Bring data from application. properties
+	private String names; // set it to a variable calls names
 
-    @PostMapping(Constants.SAVECOLORS)
-    public Colors saveColors (@RequestBody Colors colors){
-        List<String> l1 = List.of(names.split(","));
-        for(int i = 0; i<=l1.size()-1; i++) {
-            log.info(l1.get(i).trim());
-        }
-        Colors c1 = colorsService.SaveColor(colors);
-        return c1;
-    }
+	@PostMapping(Constants.SAVECOLORS)
+	public Colors saveColors(@RequestBody Colors colors) {
+		List<String> l1 = List.of(names.split(","));
+		for (int i = 0; i <= l1.size() - 1; i++) {
+			log.info(l1.get(i).trim());
+		}
+		Colors c1 = colorsService.SaveColor(colors);
+		return c1;
+	}
 
-    @GetMapping(Constants.GETCOLORID)
-    public Colors getColorId(@PathVariable long id){
-        log.info("Kindly select the colors from the below list");
-        //Please print the list of colors here
-        Colors color = colorsService.getColorId(id);
-        return color;
-    }
+	@GetMapping(Constants.GETCOLORID)
+	public Colors getColorId(@PathVariable long id) {
+		log.info("Kindly select the colors from the below list");
+		// Please print the list of colors here
+		Colors color = colorsService.getColorId(id);
+		return color;
+	}
 }

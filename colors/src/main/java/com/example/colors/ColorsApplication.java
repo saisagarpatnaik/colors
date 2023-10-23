@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ColorsApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(ColorsApplication.class);
+
 	public static void main(String[] args) {
 
 		SpringApplication.run(ColorsApplication.class, args);
