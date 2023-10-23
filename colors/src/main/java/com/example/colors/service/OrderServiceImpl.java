@@ -70,16 +70,14 @@ public class OrderServiceImpl implements OrderService {
             }
             log.info("Please chose a shadeId: ");
             int shadeId = s.nextInt();
-            if(shadeId>0 && shadeId<=shades.size()){
-                //We don't need to call the db again, I could filter the data from the list I received in List<Shades> using stream.
-                Optional<Shades> shades1 = shadesRepository.findById((long)shadeId);
-                log.info("The shade You have selected is: " + shades1.get().getShadeName());
-                Shades shades2 = shades1.get();
-                orders.setShades(shades2);
-            }
-            else {
-                log.info("Please chose the right shade listed above: ");
-                int shadeIdAgain = s.nextInt();
+            //This Optional line checks the value that is entered in shadeId in the list of shades and if it finds
+            Optional<Shades> sh = shades.stream().filter(sr -> sr.getShadeId() == shadeId).findFirst();
+            if (sh.isPresent()) { //if the value is present
+                Shades sh1 = sh.get();
+                log.info("You have selected the shade::" + sh1.getShadeName());
+                orders.setShades(sh1);
+            } else {
+                log.info("This id is not in the list: ");
             }
         }
         else {
