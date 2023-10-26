@@ -105,8 +105,7 @@ public class OrderServiceImpl implements OrderService {
 		log.info("Final customer object" + customer);
 		Customer customer1 = customerRepository.save(customer);
 		orders.setCustomer(customer1);
-		Orders order = ordersRepository.save(orders);
-		return order;
+		return ordersRepository.save(orders);
 	}
 
 	@Override

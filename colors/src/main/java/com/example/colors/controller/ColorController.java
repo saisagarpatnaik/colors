@@ -27,15 +27,13 @@ public class ColorController {
 		for (int i = 0; i <= l1.size() - 1; i++) {
 			log.info(l1.get(i).trim());
 		}
-		Colors c1 = colorsService.SaveColor(colors);
-		return c1;
+		return colorsService.SaveColor(colors);
 	}
 
 	@GetMapping(Constants.GETCOLORID)
 	public Colors getColorId(@PathVariable long id) {
 		log.info("Kindly select the colors from the below list");
 		// Please print the list of colors here
-		Colors color = colorsService.getColorId(id);
-		return color;
+		return colorsService.getColorId(id);
 	}
 }

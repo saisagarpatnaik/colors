@@ -29,7 +29,9 @@ public class ShadesServiceImpl implements ShadesService {
 		log.info("This is to get color id " + l); // This print the id
 		Optional<Colors> colors = colorsRepository.findById(l); // finding the l id
 		Shades s1 = shadesRepository.save(shades); // This will save the data in repo
-		s1.setColors(colors.get()); // This will set the colors data from findById using get()
+		if (colors.isPresent()) {
+			s1.setColors(colors.get()); // This will set the colors data from findById using get()
+		}
 		log.info("After saving the shades" + s1.toString());
 		return s1;
 	}

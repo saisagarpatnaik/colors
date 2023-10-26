@@ -8,4 +8,8 @@ public class Constants {
 	public static final String SAVEORDERS = "/saveOrders";
 	public static final String ORDERSTATUS = "/searchOrders";
 
+	private Constants() {
+
+	}
+
 }

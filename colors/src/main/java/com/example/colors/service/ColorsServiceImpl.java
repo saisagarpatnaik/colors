@@ -28,7 +28,10 @@ public class ColorsServiceImpl implements ColorsService {
 	@Override
 	public Colors getColorId(long id) {
 		Optional<Colors> colorId = colorsRepository.findById(id);
-		log.info("You chose this color: " + colorId.get());
-		return colorId.get();
+		if (colorId.isPresent()) {
+			log.info("You chose this color: " + colorId.get());
+			return colorId.get();
+		}
+		return null;
 	}
 }
