@@ -32,6 +32,8 @@ public class ColorController {
 
 	@GetMapping(Constants.GETCOLORID)
 	public Colors getColorId(@PathVariable long id) {
+		//PathVariable - you pass one value after POSTMAN URL e.g. /1
+		//Postman - http://localhost:8080/getColorId/2
 		log.info("Kindly select the colors from the below list");
 		// Please print the list of colors here
 		return colorsService.getColorId(id);

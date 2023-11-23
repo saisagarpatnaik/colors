@@ -4,16 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import com.example.colors.dao.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.example.colors.dao.ColorsRepository;
-import com.example.colors.dao.CustomerRepository;
-import com.example.colors.dao.OrdersRepository;
-import com.example.colors.dao.ShadesRepository;
 import com.example.colors.entity.Colors;
 import com.example.colors.entity.Customer;
 import com.example.colors.entity.Orders;
@@ -36,6 +33,12 @@ public class OrderServiceImpl implements OrderService {
 	ColorsRepository colorsRepository;
 	@Autowired
 	ShadesRepository shadesRepository;
+	@Autowired
+	TestRepository testRepository;
+	@Autowired
+	TestRepository1 testRepository1;
+	@Autowired
+	CommonRepository commonRepository;
 
 	@Override
 	public Orders SaveOrder() {
@@ -51,11 +54,24 @@ public class OrderServiceImpl implements OrderService {
 			log.info("Values are empty");
 		}
 		List<Colors> searchResult = null;
+		boolean anyMatch = false;
 		Scanner s = new Scanner(System.in);
 		log.info("Please chose a color: ");
 		String color2 = s.nextLine();
+		log.info("Before Entering first: " + color2);
 		if (!StringUtils.isEmpty(color2)) {
+			do {
 			searchResult = colorsRepository.findByColor(color2);
+			log.info("This is the search result: " + searchResult);
+			if (!searchResult.isEmpty() && searchResult.get(0).getColor().equalsIgnoreCase(color2)){
+				anyMatch = true;
+			}
+			else {
+				log.info("Please chose a color: ");
+				color2 = s.nextLine();
+				}
+			} while(!anyMatch); //This loop will run until anymatch becomes true. //Do while run until while condition becomes true
+
 			log.info("You have chosen: " + searchResult.get(0).getColor());
 			log.info("And the color id selected is: " + searchResult.get(0).getColorId());
 			// The below lines are not required at all #Ravi review, we are fetching same
@@ -101,7 +117,6 @@ public class OrderServiceImpl implements OrderService {
 		log.info("Please enter your phone number: ");
 		String phone = s1.nextLine();
 		customer.setCustomerPhoneNumber(phone);
-		// s.close();
 		log.info("Final customer object" + customer);
 		Customer customer1 = customerRepository.save(customer);
 		orders.setCustomer(customer1);
@@ -112,5 +127,21 @@ public class OrderServiceImpl implements OrderService {
 	public List<Orders> SearchOrder(Orders orders) {
 
 		return null;
+	}
+
+	@Override
+	public List<Orders> searchOrdersByDate(String date, String colorId) {
+		log.info("This @ Service IMPL");
+		List<Orders> l1 = testRepository.SearchOrderByDate(date, colorId);
+		log.info(l1.toString());
+		return l1;
+	}
+
+	@Override
+	public List<Colors> searchOrdersId(String colorId) {
+		log.info("This @ Service IMPL");
+		List<Colors> c1 = testRepository1.searchOrdersId(colorId);
+		log.info("This after testRepository Service IMPL");
+		return c1;
 	}
 }

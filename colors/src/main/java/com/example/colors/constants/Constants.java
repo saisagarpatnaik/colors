@@ -8,6 +8,9 @@ public class Constants {
 	public static final String SAVEORDERS = "/saveOrders";
 	public static final String ORDERSTATUS = "/searchOrders";
 
+	public static final String ORDERSBYDATE = "/searchOrdersByDate";
+	public static final String ORDERSBYID = "/searchOrdersId";
+
 	private Constants() {
 
 	}
