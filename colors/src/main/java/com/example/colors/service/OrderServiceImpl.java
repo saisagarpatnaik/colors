@@ -37,8 +37,6 @@ public class OrderServiceImpl implements OrderService {
 	TestRepository testRepository;
 	@Autowired
 	TestRepository1 testRepository1;
-	@Autowired
-	CommonRepository commonRepository;
 
 	@Override
 	public Orders SaveOrder() {
